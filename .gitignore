@@ -1,5 +1,24 @@
-# Environment variables
+# Python
+__pycache__/
+*.py[cod]
+
+# Virtual environment
+venv/
+.venv/
+env/
+
+# Environment variables / secrets
 .env
 .env.*
 !.env.example
-backend/.env
+
+# Google / service account credentials
+service_account.json
+*.json
+
+# VS Code
+.vscode/
+
+# OS files
+.DS_Store
+Thumbs.db
