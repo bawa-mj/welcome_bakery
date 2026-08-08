@@ -48,11 +48,19 @@ from google.oauth2.service_account import Credentials as ServiceAccountCredentia
 # ---------------------------------------------------------------------------
 app = FastAPI(title="EZmart backend")
 
+# SECURITY: COOP Middleware added to resolve Google OAuth popup / postMessage errors
+@app.middleware("http")
+async def add_security_headers(request: Request, call_next):
+    response = await call_next(request)
+    response.headers["Cross-Origin-Opener-Policy"] = "same-origin-allow-popups"
+    return response
+
 # SECURITY: "*" is fine for local testing only. Before going live, change this
 # to your real site, e.g. allow_origins=["https://layerandloaf.com"]
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],
+    allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
@@ -341,15 +349,3 @@ async def razorpay_webhook(request: Request):
 #     frontend/js/main.js
 # ---------------------------------------------------------------------------
 app.mount("/", StaticFiles(directory="../frontend", html=True), name="frontend")
-
-
-# ---------------------------------------------------------------------------
-# requirements.txt
-# ---------------------------------------------------------------------------
-# fastapi
-# uvicorn
-# pydantic
-# python-dotenv
-# google-auth
-# gspread
-# razorpay
