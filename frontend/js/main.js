@@ -6,7 +6,7 @@
 
 /* ---------- Config — edit these for your shop ---------- */
 const OWNER_WHATSAPP = "916399791643"; // country code + number, no + or spaces
-const SHOP_NAME = "EZmart";
+const SHOP_NAME = "Welcome Bakery";
 const GOOGLE_CLIENT_ID = "824990308971-i6ruaje7bi6ihcmv53ugcjfenh927hg3.apps.googleusercontent.com";
 
 /* ---------- Data: flavours & products ---------- */
@@ -562,12 +562,6 @@ async function submitOrder(order){
 
 document.getElementById('closeDrawer').addEventListener('click', closeCart);
 document.getElementById('overlay').addEventListener('click', closeCart);
-
-/* "Filter" link on the All Flavors section scrolls up to the
-   Shop by Flavor category row so the customer can pick one. */
-document.getElementById('filterBtn').addEventListener('click', () => {
-  document.getElementById('categoryGrid').scrollIntoView({ behavior: 'smooth', block: 'center' });
-});
 
 /* =============================================================
    HERO SLIDER
