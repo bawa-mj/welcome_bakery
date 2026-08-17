@@ -1,0 +1,17 @@
+name: Backend Health Check
+
+on:
+  schedule:
+    - cron: "*/5 * * * *"
+  workflow_dispatch:
+
+jobs:
+  health-check:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check EZmart backend
+        run: curl -f https://welcome-bakery-1.onrender.com/api/health
+
+
+
